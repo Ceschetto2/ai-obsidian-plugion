@@ -1,16 +1,24 @@
-import {App, Editor, MarkdownView ,Modal, Notice, Plugin} from 'obsidian';
-import {DEFAULT_ANT_SETTINGS, AntSettings, AntSettingTab} from "./settings";
+import {App, Editor, MarkdownView ,Modal, Notice, Plugin, WorkspaceLeaf} from 'obsidian';
+import {AntSettingsSchema, ant_settings, AntSettingTab} from "./settings";
+import {AiChatView, ai_chat_view} from './ui/ai-chat-view';
+import ChatService from 'services/chat-service';
 
 // Remember to rename these classes and interfaces!
 
 export default class AINoteTakingPlugin extends Plugin {
-	settings: AntSettings;
+	settings: AntSettingsSchema;
+	chatService: ChatService
 
 	async onload() {
 		await this.loadSettings();
+		this.chatService = new ChatService(this)
+		this.registerView(
+			ai_chat_view,
+			(leaf)=> new AiChatView(leaf, this.settings, this.chatService)
+		)
 
-		this.addRibbonIcon('dice', 'AI Chat', (evt: MouseEvent) => {
-			new Notice('In development');
+		this.addRibbonIcon('dice', 'AI Chat', () => {
+			this.activateView()
 		});
 
 		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
@@ -71,11 +79,40 @@ export default class AINoteTakingPlugin extends Plugin {
 		// });
 	}
 
+	async activateView() {
+		const { workspace } = this.app;
+
+		const existingLeaf = workspace.getLeavesOfType(ai_chat_view)[0] ?? null;
+
+		if (!existingLeaf) {
+			const leaf = workspace.getRightLeaf(false);
+
+			if (!leaf) {
+				return;
+			}
+
+			await leaf.setViewState({
+				type: ai_chat_view,
+				active: true
+			});
+
+			workspace.revealLeaf(leaf);
+			return;
+		}
+
+		if (workspace.rightSplit.collapsed) {
+			workspace.rightSplit.expand();
+			workspace.revealLeaf(existingLeaf);
+		} else {
+			workspace.rightSplit.collapse();
+		}
+	}
+
 	onunload() {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_ANT_SETTINGS, await this.loadData() as Partial<AntSettings>);
+		this.settings = Object.assign({}, ant_settings, await this.loadData() as Partial<AntSettingsSchema>);
 	}
 
 	async saveSettings() {
