@@ -1,8 +1,184 @@
+.ai-chat-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 0;
+	background: var(--background-primary);
+}
+
+/* Header */
+
+.ai-chat-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 16px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	background: var(--background-secondary);
+}
+
+.ai-chat-header-information {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.ai-chat-title {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.ai-chat-model {
+	margin-top: 3px;
+	color: var(--text-muted);
+	font-size: 11px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ai-chat-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ai-chat-status {
+	color: var(--text-muted);
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+.ai-chat-new-chat-button {
+	padding: 5px 9px;
+	font-size: 12px;
+}
+
+/* Messages */
+
+.ai-chat-messages {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 14px;
+	min-height: 0;
+	padding: 16px;
+	overflow-y: auto;
+}
+
+.ai-chat-empty-state {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	color: var(--text-muted);
+	text-align: center;
+}
+
+.ai-chat-empty-state-title {
+	margin: 0 0 6px;
+	color: var(--text-normal);
+	font-weight: 600;
+}
+
+.ai-chat-empty-state-description {
+	max-width: 280px;
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.ai-chat-message {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	max-width: 88%;
+	user-select: text;
+    -webkit-user-select: text;
+}
+
+.ai-chat-message-user {
+	align-self: flex-end;
+}
+
+.ai-chat-message-assistant {
+	align-self: flex-start;
+}
+
+.ai-chat-message-role {
+	padding: 0 4px;
+	color: var(--text-muted);
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.ai-chat-message-user .ai-chat-message-role {
+	text-align: right;
+}
+
+.ai-chat-message-content {
+	padding: 10px 12px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 10px;
+	line-height: 1.5;
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+}
+
+.ai-chat-message-user .ai-chat-message-content {
+	border-color: var(--interactive-accent);
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+.ai-chat-message-assistant .ai-chat-message-content {
+	background: var(--background-secondary);
+	color: var(--text-normal);
+}
+
 /*
+ * Restore normal Markdown spacing after the assistant response
+ * has been rendered.
+ */
+.ai-chat-message-assistant .ai-chat-message-content p {
+	margin-top: 0;
+	margin-bottom: 8px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.ai-chat-message-assistant .ai-chat-message-content p:last-child {
+	margin-bottom: 0;
+}
 
-If your plugin does not need CSS, delete this file.
+.ai-chat-message-content-error {
+	border-color: var(--text-error);
+	color: var(--text-error);
+}
 
-*/
+/* Composer */
+
+.ai-chat-composer {
+	display: flex;
+	align-items: flex-end;
+	gap: 8px;
+	padding: 12px;
+	border-top: 1px solid var(--background-modifier-border);
+	background: var(--background-secondary);
+}
+
+.ai-chat-prompt-input {
+	flex: 1;
+	max-height: 160px;
+	min-height: 38px;
+	padding: 9px 10px;
+	resize: none;
+	line-height: 1.4;
+}
+
+.ai-chat-send-button {
+	min-width: 62px;
+	height: 38px;
+}
