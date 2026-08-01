@@ -1,17 +1,17 @@
 import {App, Editor, MarkdownView ,Modal, Notice, Plugin, WorkspaceLeaf} from 'obsidian';
 import {AntSettingsSchema, ant_settings, AntSettingTab} from "./settings";
 import {AiChatView, ai_chat_view} from './ui/ai-chat-view';
-import ChatService from 'services/chat-service';
+import GeminiChatService from 'services/gemini-chat-services';
 
 // Remember to rename these classes and interfaces!
 
 export default class AINoteTakingPlugin extends Plugin {
 	settings: AntSettingsSchema;
-	chatService: ChatService
+	chatService: GeminiChatService
 
 	async onload() {
 		await this.loadSettings();
-		this.chatService = new ChatService(this)
+		this.chatService = new GeminiChatService(this)
 		this.registerView(
 			ai_chat_view,
 			(leaf)=> new AiChatView(leaf, this.settings, this.chatService)

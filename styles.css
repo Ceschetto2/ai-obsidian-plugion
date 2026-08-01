@@ -97,6 +97,8 @@
 	flex-direction: column;
 	gap: 4px;
 	max-width: 88%;
+	user-select: text;
+    -webkit-user-select: text;
 }
 
 .ai-chat-message-user {

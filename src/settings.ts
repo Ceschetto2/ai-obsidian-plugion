@@ -13,21 +13,33 @@ export type AntSettingsSchema = {
 	response_length: AntSetting<number>;
 	api_key: AntSetting<string>;
 };
-//nex models will be the llama 4 scount
+
 export enum ModelValues {
-	// Recommended current models
-	GEMINI_3_1_FLASH_LITE = "gemini-3.1-flash-lite",
-	GEMINI_3_1_FLASH_LITE_PREVIEW = "gemini-3.1-flash-lite-preview",
-	GEMINI_3_FLASH_PREVIEW = "gemini-3-flash-preview",
+    // ---- Latest generation (recommended) ----
+    GEMINI_3_5_FLASH = "gemini-3.5-flash",
+    GEMINI_3_5_FLASH_LITE = "gemini-3.5-flash-lite",
+    GEMINI_3_6_FLASH = "gemini-3.6-flash",
 
-	GEMINI_2_5_PRO = "gemini-2.5-pro",
-	GEMINI_2_5_FLASH = "gemini-2.5-flash",
-	GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite",
-	GEMINI_2_5_FLASH_LITE_PREVIEW = "gemini-2.5-flash-lite-preview-09-2025",
+    GEMINI_3_1_FLASH_LITE = "gemini-3.1-flash-lite",
+    GEMINI_3_1_FLASH_LITE_PREVIEW = "gemini-3.1-flash-lite-preview",
+    GEMINI_3_1_PRO_PREVIEW = "gemini-3.1-pro-preview",
 
-	// Gemma models available through the Gemini API
-	GEMMA_4_31B_IT = "gemma-4-31b-it",
-	GEMMA_4_26B_A4B_IT = "gemma-4-26b-a4b-it",
+    GEMINI_3_FLASH_PREVIEW = "gemini-3-flash-preview",
+    GEMINI_3_PRO_PREVIEW = "gemini-3-pro-preview",
+
+    // ---- "Latest" rolling aliases (always point to newest stable) ----
+    GEMINI_FLASH_LATEST = "gemini-flash-latest",
+    GEMINI_FLASH_LITE_LATEST = "gemini-flash-lite-latest",
+    GEMINI_PRO_LATEST = "gemini-pro-latest",
+
+    // ---- 2.5 generation (still listed for your project) ----
+    GEMINI_2_5_FLASH = "gemini-2.5-flash",
+    GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite",
+    GEMINI_2_5_PRO = "gemini-2.5-pro",
+
+    // ---- Gemma models available through the Gemini API ----
+    GEMMA_4_31B_IT = "gemma-4-31b-it",
+    GEMMA_4_26B_A4B_IT = "gemma-4-26b-a4b-it",
 }
 
 export const ant_settings: AntSettingsSchema = {

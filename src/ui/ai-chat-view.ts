@@ -5,7 +5,7 @@ import {
 } from "obsidian";
 
 import { AntSettingsSchema } from "../settings";
-import  ChatService from "../services/chat-service";
+import  ChatService from "../services/interface-chat-service";
 
 export const ai_chat_view = "ai_chat_view";
 
