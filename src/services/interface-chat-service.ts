@@ -1,5 +1,5 @@
 export default interface ChatService {
-    resetConversation(): void;
-    sendMessageStream(userMessage: string): any;
-    sendMessage(userMessage: string):any;
+    resetConversation(): Promise<void>;
+    sendMessageStream(userMessage: string): AsyncGenerator<string| undefined,void,unknown>;
+    sendMessage(userMessage: string): Promise<string | undefined>;
 }

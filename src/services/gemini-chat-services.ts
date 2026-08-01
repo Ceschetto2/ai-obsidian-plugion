@@ -14,10 +14,11 @@ export default class GeminiChatService implements ChatService{
     }
 
     async sendMessage(userMessage: string) {
-        this.google_ai_sdk.models.generateContent({
+        const response = await this.google_ai_sdk.models.generateContent({
             model: this.model,
             contents: userMessage
         })
+        return response.text
     }
     async *sendMessageStream(userMessage: string) {
         const stream = await this.google_ai_sdk.models.generateContentStream({

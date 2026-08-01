@@ -59,7 +59,7 @@ export class AiChatView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		return "AI Chat";
+		return "Ai chat";
 	}
 
 	/**

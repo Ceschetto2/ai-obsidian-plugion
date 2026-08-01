@@ -1,4 +1,4 @@
-import {App, Setting, PluginSettingTab, DropdownComponent} from "obsidian";
+import {App, Setting, PluginSettingTab} from "obsidian";
 import AINoteTakingPlugin from "./main";
 
 type AntSetting<T> = {

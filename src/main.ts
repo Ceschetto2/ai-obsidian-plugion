@@ -1,4 +1,4 @@
-import {App, Editor, MarkdownView ,Modal, Notice, Plugin, WorkspaceLeaf} from 'obsidian';
+import { Plugin } from 'obsidian';
 import {AntSettingsSchema, ant_settings, AntSettingTab} from "./settings";
 import {AiChatView, ai_chat_view} from './ui/ai-chat-view';
 import GeminiChatService from 'services/gemini-chat-services';
@@ -18,7 +18,7 @@ export default class AINoteTakingPlugin extends Plugin {
 		)
 
 		this.addRibbonIcon('dice', 'AI Chat', () => {
-			this.activateView()
+			this.activateView().catch().then()
 		});
 
 		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
@@ -96,13 +96,13 @@ export default class AINoteTakingPlugin extends Plugin {
 				active: true
 			});
 
-			workspace.revealLeaf(leaf);
+			workspace.revealLeaf(leaf).catch().then();
 			return;
 		}
 
 		if (workspace.rightSplit.collapsed) {
 			workspace.rightSplit.expand();
-			workspace.revealLeaf(existingLeaf);
+			workspace.revealLeaf(existingLeaf).catch().then();
 		} else {
 			workspace.rightSplit.collapse();
 		}
