@@ -19,7 +19,7 @@ export class AiChatView extends ItemView {
 		container.empty();
 
 		container.createEl("h4", {
-			text: "AI Chat"
+			text: "AI chat"
 		});
 
 		container.createDiv({
@@ -47,6 +47,6 @@ export class AiChatView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		return "AI Chat";
+		return "AI chat";
 	}
 }

@@ -17,8 +17,10 @@ export default class AINoteTakingPlugin extends Plugin {
 			(leaf)=> new AiChatView(leaf, this.settings, this.chatService)
 		)
 
-		this.addRibbonIcon('dice', 'AI Chat', () => {
-			this.activateView().catch().then()
+		this.addRibbonIcon('Dice', 'AI chat', () => {
+			this.activateView().catch((err) => {
+				console.error("Failed to send message:", err);
+			});
 		});
 
 		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
@@ -96,13 +98,17 @@ export default class AINoteTakingPlugin extends Plugin {
 				active: true
 			});
 
-			workspace.revealLeaf(leaf).catch().then();
+			workspace.revealLeaf(leaf).catch((err) => {
+				console.error("Failed to send message:", err);
+			});;
 			return;
 		}
 
 		if (workspace.rightSplit.collapsed) {
 			workspace.rightSplit.expand();
-			workspace.revealLeaf(existingLeaf).catch().then();
+			workspace.revealLeaf(existingLeaf).catch((err) => {
+				console.error("Failed to send message:", err);
+			});;
 		} else {
 			workspace.rightSplit.collapse();
 		}
@@ -116,7 +122,7 @@ export default class AINoteTakingPlugin extends Plugin {
 	}
 
 	async saveSettings() {
-		await this.saveData(this.settings);
+		void this.saveData(this.settings);
 	}
 }
 

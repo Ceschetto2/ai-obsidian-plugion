@@ -59,7 +59,7 @@ export class AiChatView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		return "Ai chat";
+		return "AI chat";
 	}
 
 	/**
@@ -86,7 +86,7 @@ export class AiChatView extends ItemView {
 
 		information.createEl("h4", {
 			cls: "ai-chat-title",
-			text: "AI Chat"
+			text: "AI chat"
 		});
 
 		this.modelLabel = information.createSpan({
@@ -314,7 +314,7 @@ export class AiChatView extends ItemView {
 			return;
 		}
 
-		this.chatService.resetConversation();
+		void this.chatService.resetConversation();
 
 		this.chatContainer.empty();
 		this.renderEmptyState();
@@ -344,12 +344,13 @@ export class AiChatView extends ItemView {
 	}
 
 	private resizePromptInput(): void {
-		this.promptInput.style.height = "auto";
+		this.promptInput.setCssProps({ height: "auto" });
 
 		const maximumHeight = 160;
 
-		this.promptInput.style.height =
-			`${Math.min(this.promptInput.scrollHeight, maximumHeight)}px`;
+		this.promptInput.setCssProps({
+			height: `${Math.min(this.promptInput.scrollHeight, maximumHeight)}px`
+		});
 	}
 
 	private scrollToLatestMessage(): void {
